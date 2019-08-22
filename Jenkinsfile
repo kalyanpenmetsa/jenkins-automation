@@ -12,7 +12,8 @@ node("master") {
 		stage('Checkout') {
 			checkout scm
 		}
-			if ("${PHASE}" == "BUILD" || "${PHASE}" == "BUILD_DEPLOY") {
+			if ("${env.BRANCH_NAME}" == "dev") {}
+			if ("${env.BRANCH_NAME}" == "qa") {
 				stage('Compile') {
 		      echo "${env.BRANCH_NAME}"
 		    }
@@ -32,7 +33,7 @@ node("master") {
 					echo "Smoke testing will happen here..."
 				}
 			}
-			if ("${PHASE}" == "BUILD_DEPLOY" || "${PHASE}" == "DEPLOY") {
+			if ("${env.BRANCH_NAME}" == "master") {
 				stage('CopyToDev') {
 		      echo "Pre-Check will take place here..."
 		    }
