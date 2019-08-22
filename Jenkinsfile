@@ -12,34 +12,17 @@ node("master") {
 		stage('Checkout') {
 			checkout scm
 		}
+			if ("${env.BRANCH_NAME}" == "master") {}
 			if ("${env.BRANCH_NAME}" == "dev") {}
 			if ("${env.BRANCH_NAME}" == "qa") {
-				stage('Compile') {
-		      echo "${env.BRANCH_NAME}"
+				stage('Smoke Test') {
+		      echo "Python script for QA"
 		    }
-				stage('Unittest') {
-					echo "Unittest will happen here..."
-				}
-				stage('CodeCoverage') {
-					echo "Code Coverage will happen here..."
-				}
-				stage('SonarAnalysis') {
-					echo "Sonar Analysis will happen here..."
-				}
-				stage('Package') {
-					echo "Code Packaging will happen here..."
-				}
-				stage('SmokeTest') {
-					echo "Smoke testing will happen here..."
-				}
 			}
-			if ("${env.BRANCH_NAME}" == "master") {
-				stage('CopyToDev') {
-		      echo "Pre-Check will take place here..."
+			if ("${env.BRANCH_NAME}" == "product") {
+				stage('Smoke Test') {
+		      echo "Python script for Product"
 		    }
-				stage('SmokeTestOnDev') {
-					echo "Source cleanup destination migration..."
-				}
 			}
   // }
 
