@@ -11,6 +11,7 @@ node("master") {
 	// withEnv(["PATH=${env.PATH}:${tool 'mvn'}", "MVN_HOME=${tool 'mvn'}"]) {
 		stage('Checkout') {
 			checkout scm
+			echo "${env.BRANCH_NAME}"
 		}
 			if ("${env.BRANCH_NAME}" == "master") {}
 			if ("${env.BRANCH_NAME}" == "dev") {}
