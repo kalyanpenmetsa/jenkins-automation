@@ -14,7 +14,7 @@ node("master") {
 		}
 			if ("${PHASE}" == "BUILD" || "${PHASE}" == "BUILD_DEPLOY") {
 				stage('Compile') {
-		      echo "${GIT_BRANCH}"
+		      echo "${env.BRANCH_NAME}"
 		    }
 				stage('Unittest') {
 					echo "Unittest will happen here..."
