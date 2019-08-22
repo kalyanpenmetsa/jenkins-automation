@@ -14,7 +14,7 @@ node("master") {
 		}
 			if ("${PHASE}" == "BUILD" || "${PHASE}" == "BUILD_DEPLOY") {
 				stage('Compile') {
-		      echo "mvn compile will happen here..."
+		      echo "${BRANCH}"
 		    }
 				stage('Unittest') {
 					echo "Unittest will happen here..."
