@@ -12,7 +12,7 @@ node("master") {
 		stage('Checkout') {
 			checkout scm
 		}
-			if ("${PHASE}" == "BUILD") {
+			if ("${PHASE}" == "BUILD" || "${PHASE}" == "BUILD_DEPLOY") {
 				stage('Compile') {
 		      echo "mvn compile will happen here..."
 		    }
@@ -29,17 +29,17 @@ node("master") {
 					echo "Code Packaging will happen here..."
 				}
 				stage('SmokeTest') {
-					echo "Client provisioning to the destination MAD starts here..."
+					echo "Smoke testing will happen here..."
 				}
 			}
-			// if (("${PHASE}" == "BUILD_DEPLOY") or ("${PHASE}" == "DEPLOY")) {
-			// 	stage('CopyToDev') {
-		  //     echo "Pre-Check will take place here..."
-		  //   }
-			// 	stage('SmokeTestOnDev') {
-			// 		echo "Source cleanup destination migration..."
-			// 	}
-			// }
-  // }
+			if ("${PHASE}" == "BUILD_DEPLOY" || "${PHASE}" == "DEPLOY") {
+				stage('CopyToDev') {
+		      echo "Pre-Check will take place here..."
+		    }
+				stage('SmokeTestOnDev') {
+					echo "Source cleanup destination migration..."
+				}
+			}
+  }
 
 }
