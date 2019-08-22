@@ -12,26 +12,26 @@ node("master") {
 		stage('Checkout') {
 			checkout scm
 		}
-			// if (("${PHASE}" == "BUILD") or ("${PHASE}" == "BUILD_DEPLOY")) {
-			// 	stage('Compile') {
-		  //     echo "mvn compile will happen here..."
-		  //   }
-			// 	stage('Unittest') {
-			// 		echo "Unittest will happen here..."
-			// 	}
-			// 	stage('CodeCoverage') {
-			// 		echo "Code Coverage will happen here..."
-			// 	}
-			// 	stage('SonarAnalysis') {
-			// 		echo "Sonar Analysis will happen here..."
-			// 	}
-			// 	stage('Package') {
-			// 		echo "Code Packaging will happen here..."
-			// 	}
-			// 	stage('SmokeTest') {
-			// 		echo "Client provisioning to the destination MAD starts here..."
-			// 	}
-			// }
+			if ("${PHASE}" == "BUILD") {
+				stage('Compile') {
+		      echo "mvn compile will happen here..."
+		    }
+				stage('Unittest') {
+					echo "Unittest will happen here..."
+				}
+				stage('CodeCoverage') {
+					echo "Code Coverage will happen here..."
+				}
+				stage('SonarAnalysis') {
+					echo "Sonar Analysis will happen here..."
+				}
+				stage('Package') {
+					echo "Code Packaging will happen here..."
+				}
+				stage('SmokeTest') {
+					echo "Client provisioning to the destination MAD starts here..."
+				}
+			}
 			// if (("${PHASE}" == "BUILD_DEPLOY") or ("${PHASE}" == "DEPLOY")) {
 			// 	stage('CopyToDev') {
 		  //     echo "Pre-Check will take place here..."
