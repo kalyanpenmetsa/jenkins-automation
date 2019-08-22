@@ -12,7 +12,7 @@ node("master") {
 		stage('Checkout') {
 			checkout scm
 		}
-			if ("${PHASE}" == "BUILD" or "${PHASE}" == "BUILD_DEPLOY") {
+			if (("${PHASE}" == "BUILD") or ("${PHASE}" == "BUILD_DEPLOY")) {
 				stage('Compile') {
 		      echo "mvn compile will happen here..."
 		    }
@@ -32,7 +32,7 @@ node("master") {
 					echo "Client provisioning to the destination MAD starts here..."
 				}
 			}
-			if ("${PHASE}" == "BUILD_DEPLOY" or "${PHASE}" == "DEPLOY") {
+			if (("${PHASE}" == "BUILD_DEPLOY") or ("${PHASE}" == "DEPLOY")) {
 				stage('CopyToDev') {
 		      echo "Pre-Check will take place here..."
 		    }
