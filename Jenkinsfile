@@ -1,11 +1,10 @@
 #!/usr/bin/env groovy
 
-properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
-
-// Env Config
-[$class: 'hudson.model.StringParameterDefinition', name: 'PHASE', defaultValue: "", description: "Please enter the phase: BUILD, BUILD_DEPLOY, DEPLOY"],
-[$class: 'hudson.model.StringParameterDefinition', name: 'ENV', defaultValue: "", description: "Please enter the environment details"]
-]]])
+// properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
+// 
+// [$class: 'hudson.model.StringParameterDefinition', name: 'PHASE', defaultValue: "", description: "Please enter the phase: BUILD, BUILD_DEPLOY, DEPLOY"],
+// [$class: 'hudson.model.StringParameterDefinition', name: 'ENV', defaultValue: "", description: "Please enter the environment details"]
+// ]]])
 
 node("master") {
 try {
