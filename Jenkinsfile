@@ -8,6 +8,7 @@ properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
 ]]])
 
 node("master") {
+<<<<<<< HEAD
 try {
 	stage('Checkout') {
 		checkout scm
@@ -49,4 +50,23 @@ try {
 	// 								content
 	throw error
 }
+=======
+	// withEnv(["PATH=${env.PATH}:${tool 'mvn'}", "MVN_HOME=${tool 'mvn'}"]) {
+		stage('Checkout') {
+			checkout scm
+		}
+			if ("${env.BRANCH_NAME}" == "master") {}
+			if ("${env.BRANCH_NAME}" == "dev") {}
+			if ("${env.BRANCH_NAME}" == "qa") {
+				stage('Smoke Test') {
+		      echo "Python script for QA"
+		    }
+			}
+			if ("${env.BRANCH_NAME}" == "product") {
+				stage('Smoke Test') {
+		      echo "Python script for Product"
+		    }
+			}
+  // }
+>>>>>>> 8a093e5c5e26795bc998464b6d3eb8cefa505384
 }
