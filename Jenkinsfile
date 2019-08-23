@@ -27,12 +27,12 @@ try {
 				bat "pytest VivedApp.py -s -k test004"
 			}
 		}
-	emailext  to: 'penmetsa29@gmail.com',
-						replyTo: 'vpen29@gmail.com',
-				    recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-						mimetype: 'text/html',
-						subject: "Hello Sender",
-						body: "Hello"
+	// emailext  to: 'penmetsa29@gmail.com',
+	// 					replyTo: 'vpen29@gmail.com',
+	// 			    recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+	// 					mimetype: 'text/html',
+	// 					subject: "Hello Sender",
+	// 					body: "Hello"
 }	catch(error) {
 	// emailext  to: 'jr7365@att.com,av206a@att.com',
 	// 					replyTo: 'DL-IDPENVMGMT@att.com',
