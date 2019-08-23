@@ -50,7 +50,6 @@ try {
 	// 								content
 	throw error
 }
-=======
 	// withEnv(["PATH=${env.PATH}:${tool 'mvn'}", "MVN_HOME=${tool 'mvn'}"]) {
 		stage('Checkout') {
 			checkout scm
