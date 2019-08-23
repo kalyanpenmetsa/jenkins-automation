@@ -1,11 +1,5 @@
 #!/usr/bin/env groovy
 
-// properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
-//
-// [$class: 'hudson.model.StringParameterDefinition', name: 'PHASE', defaultValue: "", description: "Please enter the phase: BUILD, BUILD_DEPLOY, DEPLOY"],
-// [$class: 'hudson.model.StringParameterDefinition', name: 'ENV', defaultValue: "", description: "Please enter the environment details"]
-// ]]])
-
 node("master") {
 try {
 	stage('Checkout') {
@@ -20,6 +14,7 @@ try {
 			}
 			stage('Deploy to QA') {
 				echo "Deploying to QA Env..."
+				bat "copy /Y C:\\Users\\tdoan\\Documents\\TRONGDOAN.txt \\172.16.11.235\\test"
 			}
 		}
 		if ("${env.BRANCH_NAME}" == "product") {
@@ -27,8 +22,13 @@ try {
 				echo "Python script for Product"
 				bat "pytest VivedApp.py -s -k test004"
 			}
-			stage('Deploy to Product Review') {
-				echo "Deploying to Product Review Env..."
+			stage('Deploy to Product Review MAKO') {
+				echo "Deploying to Product Review MAKO Env..."
+				bat "copy /Y C:\\Users\\tdoan\\Documents\\TRONGDOAN.txt \\172.16.11.235\\test"
+			}
+			stage('Deploy to Product Review AIO') {
+				echo "Deploying to Product Review AIO Env..."
+				bat "copy /Y C:\\Users\\tdoan\\Documents\\TRONGDOAN.txt \\172.16.11.235\\test"
 			}
 		}
 	emailext  to: 'penmetsa29@gmail.com',
