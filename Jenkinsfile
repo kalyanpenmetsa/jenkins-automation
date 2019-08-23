@@ -8,38 +8,43 @@ properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
 ]]])
 
 node("master") {
-	// withEnv(["PATH=${env.PATH}:${tool 'mvn'}", "MVN_HOME=${tool 'mvn'}"]) {
-		stage('Checkout') {
-			checkout scm
+try {
+	stage('Checkout') {
+		checkout scm
+	}
+		if ("${env.BRANCH_NAME}" == "master") {}
+		if ("${env.BRANCH_NAME}" == "dev") {}
+		if ("${env.BRANCH_NAME}" == "qa") {
+			stage('Smoke Test') {
+				echo "Python script for QA"
+			}
 		}
-			if ("${PHASE}" == "BUILD" || "${PHASE}" == "BUILD_DEPLOY") {
-				stage('Compile') {
-		      echo "${env.BRANCH_NAME}"
-		    }
-				stage('Unittest') {
-					echo "Unittest will happen here..."
-				}
-				stage('CodeCoverage') {
-					echo "Code Coverage will happen here..."
-				}
-				stage('SonarAnalysis') {
-					echo "Sonar Analysis will happen here..."
-				}
-				stage('Package') {
-					echo "Code Packaging will happen here..."
-				}
-				stage('SmokeTest') {
-					echo "Smoke testing will happen here..."
-				}
+		if ("${env.BRANCH_NAME}" == "product") {
+			stage('Smoke Test') {
+				echo "Python script for Product"
 			}
-			if ("${PHASE}" == "BUILD_DEPLOY" || "${PHASE}" == "DEPLOY") {
-				stage('CopyToDev') {
-		      echo "Pre-Check will take place here..."
-		    }
-				stage('SmokeTestOnDev') {
-					echo "Source cleanup destination migration..."
-				}
-			}
-  // }
-
+		}
+	emailext  to: 'penmetsa29@gmail.com',
+						replyTo: 'vpen29@gmail.com',
+				    recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+						mimetype: 'text/html',
+						subject: "Hello Sender",
+						body: "Hello"
+}	catch(error) {
+	// emailext  to: 'jr7365@att.com,av206a@att.com',
+	// 					replyTo: 'DL-IDPENVMGMT@att.com',
+	// 			    recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+	// 					mimetype: 'text/html',
+	// 					subject: 'IDP Job - '  + env.JOB_NAME + ' - Build No: ' +  env.BUILD_NUMBER + ' - ' + status,
+	// 					body: 'Job : ' + env.JOB_NAME  + '\n' +
+	// 								'Build No : ' + env.BUILD_NUMBER  + '\n' +
+	// 								'Phase : ' + "${PHASE}"  + '\n' +
+	// 								'Status : ' + status  + '\n\n' +
+	// 								'Jenkins Job : ' + env.BUILD_URL + '\n' +
+	// 								'Changes : ' + env.BUILD_URL + 'changes' + '\n' +
+	// 								'Console Log : ' + env.BUILD_URL + 'consoleFull' + '\n\n' +
+	// 								'K8 (' + env.TARGET_ROLE +  ') Node Port URL for Validation: ' + env.K8_APP_URL + '\n\n' +
+	// 								content
+	throw error
+}
 }
