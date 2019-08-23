@@ -17,21 +17,21 @@ try {
 		if ("${env.BRANCH_NAME}" == "qa") {
 			stage('Smoke Test') {
 				echo "Python script for QA"
-				bat "pytest VivedApp.py -s -k test004"
+				// bat "pytest VivedApp.py -s -k test004"
 			}
 		}
 		if ("${env.BRANCH_NAME}" == "product") {
 			stage('Smoke Test') {
 				echo "Python script for Product"
-				bat "pytest VivedApp.py -s -k test004"
+				// bat "pytest VivedApp.py -s -k test004"
 			}
 		}
-	// emailext  to: 'penmetsa29@gmail.com',
-	// 					replyTo: 'vpen29@gmail.com',
-	// 			    recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-	// 					mimetype: 'text/html',
-	// 					subject: "Hello Sender",
-	// 					body: "Hello"
+	emailext  to: 'penmetsa29@gmail.com',
+						replyTo: 'vpen29@gmail.com',
+				    recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+						mimetype: 'text/html',
+						subject: "Hello Sender",
+						body: "Hello"
 }	catch(error) {
 	// emailext  to: 'jr7365@att.com,av206a@att.com',
 	// 					replyTo: 'DL-IDPENVMGMT@att.com',
