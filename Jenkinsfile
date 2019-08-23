@@ -16,13 +16,19 @@ try {
 		if ("${env.BRANCH_NAME}" == "qa") {
 			stage('Smoke Test') {
 				echo "Python script for QA"
-				// bat "pytest VivedApp.py -s -k test004"
+				bat "pytest VivedApp.py -s -k test004"
+			}
+			stage('Deploy to QA') {
+				echo "Deploying to QA Env..."
 			}
 		}
 		if ("${env.BRANCH_NAME}" == "product") {
 			stage('Smoke Test') {
 				echo "Python script for Product"
-				// bat "pytest VivedApp.py -s -k test004"
+				bat "pytest VivedApp.py -s -k test004"
+			}
+			stage('Deploy to Product Review') {
+				echo "Deploying to Product Review Env..."
 			}
 		}
 	emailext  to: 'penmetsa29@gmail.com',
