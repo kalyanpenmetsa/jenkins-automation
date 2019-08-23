@@ -8,7 +8,6 @@ properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
 ]]])
 
 node("master") {
-<<<<<<< HEAD
 try {
 	stage('Checkout') {
 		checkout scm
@@ -67,5 +66,4 @@ try {
 		    }
 			}
   // }
->>>>>>> 8a093e5c5e26795bc998464b6d3eb8cefa505384
 }
