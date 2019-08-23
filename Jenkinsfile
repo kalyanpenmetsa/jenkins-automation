@@ -12,7 +12,6 @@ node("master") {
 		stage('Checkout') {
 			checkout scm
 		}
-		echo "FUCK"
 			if ("${env.BRANCH_NAME}" == "master") {}
 			if ("${env.BRANCH_NAME}" == "dev") {}
 			if ("${env.BRANCH_NAME}" == "qa") {
@@ -26,5 +25,4 @@ node("master") {
 		    }
 			}
   // }
-
 }
