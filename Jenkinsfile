@@ -17,11 +17,13 @@ try {
 		if ("${env.BRANCH_NAME}" == "qa") {
 			stage('Smoke Test') {
 				echo "Python script for QA"
+				bat "pytest VivedApp.py -s -k test004"
 			}
 		}
 		if ("${env.BRANCH_NAME}" == "product") {
 			stage('Smoke Test') {
 				echo "Python script for Product"
+				bat "pytest VivedApp.py -s -k test004"
 			}
 		}
 	emailext  to: 'penmetsa29@gmail.com',
