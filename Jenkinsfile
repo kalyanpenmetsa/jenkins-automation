@@ -1,28 +1,10 @@
-#!/usr/bin/env groovy
-
-properties([[$class: 'ParametersDefinitionProperty', parameterDefinitions: [
-
-// Env Config
-[$class: 'hudson.model.StringParameterDefinition', name: 'PHASE', defaultValue: "", description: "Please enter the phase: BUILD, BUILD_DEPLOY, DEPLOY"],
-[$class: 'hudson.model.StringParameterDefinition', name: 'ENV', defaultValue: "", description: "Please enter the environment details"]
-]]])
-
-node("master") {
-	// withEnv(["PATH=${env.PATH}:${tool 'mvn'}", "MVN_HOME=${tool 'mvn'}"]) {
-		stage('Checkout') {
-			checkout scm
-		}
-			if ("${env.BRANCH_NAME}" == "master") {}
-			if ("${env.BRANCH_NAME}" == "dev") {}
-			if ("${env.BRANCH_NAME}" == "qa") {
-				stage('Smoke Test') {
-		      echo "Python script for QA"
-		    }
-			}
-			if ("${env.BRANCH_NAME}" == "product") {
-				stage('Smoke Test') {
-		      echo "Python script for Product"
-		    }
-			}
-  // }
+node("master"){
+  wrap([$class: 'BuildUser']) {
+    buildersEmail = env.BUILD_USER_EMAIL
+  }
+  properties([parameters([string(defaultValue: 'BVT_JOB_NAME', name: 'DEPLOY_ENV')])])
+  stageName = "Trigger BVT"
+  stage(stageName){
+	  echo "Checking something of val: ${BVT_JOB_NAME}"	
+  }
 }
