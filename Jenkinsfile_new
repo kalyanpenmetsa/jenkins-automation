@@ -6,8 +6,6 @@ stage('Print Build Info') {
     }
 } stage('Snow') {
     disableBalancerUtils()
-} stage('Deploy') {
-    deploy()
 } stage('Terraform') {
     enableBalancerUtils()
 } stage('Check Status') {
