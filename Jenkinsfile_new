@@ -1,8 +1,6 @@
 @Library('jenkins-shared-lib')_
 
-stage('Print Build Info') {
-    gitCheckout()
-} stage('Disable balancer') {
+stage('Build App') {
     buildApp()
 } stage('Deploy') {
     deploy()
