@@ -1,4 +1,4 @@
-@Library('jenkins-pipeline-shared-lib-sample')_
+@Library('jenkins-shared-lib')_
 
 stage('Print Build Info') {
     printBuildinfo {
