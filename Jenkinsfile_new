@@ -1,4 +1,4 @@
-@Library('jenkins-pipeline-shared-lib-sample')_
+@Library('jenkins-shared-lib')_
 
 stage('Print Build Info') {
     printBuildinfo {
@@ -11,5 +11,5 @@ stage('Print Build Info') {
 } stage('Terraform') {
     enableBalancerUtils()
 } stage('Check Status') {
-    checkStatus()
+    buildCode()
 }
